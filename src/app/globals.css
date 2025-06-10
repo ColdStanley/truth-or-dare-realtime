@@ -1,17 +1,31 @@
 @import "tailwindcss";
 
+/* ========== 基础变量 ========== */
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --color-primary: #8b5cf6;
+  --color-card-bg: #f9f9ff;
+  --color-tag-bg: #ede9fe;
 }
 
+/* ========== Tailwind v4 主题扩展 ========== */
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-primary: var(--color-primary);
+  --color-card-bg: var(--color-card-bg);
+  --color-tag-bg: var(--color-tag-bg);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
+/* ========== 核心 Tailwind 指令 ========== */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ========== 暗色模式 ========== */
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
@@ -19,6 +33,16 @@
   }
 }
 
+/* ========== 自定义样式组件类（推荐保留 card/tag，仅按钮使用 inline） ========== */
+.card {
+  @apply bg-[color:var(--color-card-bg)] rounded-2xl shadow-md p-6 transition hover:shadow-xl;
+}
+
+.tag {
+  @apply bg-[color:var(--color-tag-bg)] text-[color:var(--color-primary)] text-sm px-3 py-1 rounded-full;
+}
+
+/* body 默认字体设置 */
 body {
   background: var(--background);
   color: var(--foreground);
